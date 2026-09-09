@@ -10,8 +10,6 @@
   let currentIframeUrl = '';
   let authEscapeInProgress = false;
 
-  // GitHub Pages project sites run under /REPOSITORY-NAME/.
-  // This keeps the public routes /, /home and /items relative to that base.
   function getRepoBase() {
     const parts = window.location.pathname.split('/').filter(Boolean);
     return window.location.hostname.endsWith('.github.io') && parts.length ? `/${parts[0]}` : '';
@@ -22,7 +20,7 @@
   function normalizePath(pathname) {
     let path = pathname || '/';
     if (!path.startsWith('/')) path = `/${path}`;
-    if (path.length > 1) path = path.replace(/\/+$|\/+$ /g, '');
+    if (path.length > 1) path = path.replace(/\/+$/, '');
     return path || '/';
   }
 
